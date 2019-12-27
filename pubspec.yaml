@@ -15,8 +15,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_blue:
-    path: ../
+  flutter_blue: ^0.6.3+1
 
   flutter_launcher_icons: "^0.7.3"
 
