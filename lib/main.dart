@@ -8,7 +8,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:flutter_blue_example/widgets.dart';
+import 'package:mija_time_sync/widgets.dart';
 
 void main() {
   runApp(FlutterBlueApp());
@@ -161,6 +161,7 @@ class DeviceScreen extends StatelessWidget {
   const DeviceScreen({Key key, this.device}) : super(key: key);
 
   final BluetoothDevice device;
+  //final GlobalKey<ScaffoldState> mScaffoldState = new GlobalKey<ScaffoldState>();
 
   List<int> _getRandomBytes() {
     final math = Random();
@@ -204,6 +205,16 @@ class DeviceScreen extends StatelessWidget {
         }
       }
     });
+  }
+
+  _displaySnackbar(String message, BuildContext context){
+    debugPrint(message);
+
+    final snackBar = SnackBar(content: Text(message));
+    Scaffold.of(context).showSnackBar(snackBar);
+
+    //final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
+    //Scaffold.of(context).showSnackBar(snackBar);
   }
 
 
@@ -293,7 +304,28 @@ class DeviceScreen extends StatelessWidget {
                 trailing: StreamBuilder<bool>(
                   stream: device.isDiscoveringServices,
                   initialData: false,
-                  builder: (c, snapshot) => IndexedStack(
+                    /*builder: (c, snapshot) => IconButton(
+                      icon: Icon(Icons.add_alarm),
+                      onPressed: () => _discoverServicesAndSetTime(),
+                    )*/
+                    builder: (context, snapshot) => SizedBox(
+                      width: 100.0,
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.add_alarm),
+                            onPressed: () => _discoverServicesAndSetTime(),
+                            ),
+                          IconButton(
+                            icon: Icon(Icons.search),
+                            onPressed: () => _displaySnackbar('Search services', c),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  /*builder: (c, snapshot) => IndexedStack(
                     index: snapshot.data ? 1 : 0,
                     children: <Widget>[
                       IconButton(
@@ -311,7 +343,7 @@ class DeviceScreen extends StatelessWidget {
                         onPressed: null,
                       )
                     ],
-                  ),
+                  ), */
                 ),
               ),
             ),
