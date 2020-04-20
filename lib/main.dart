@@ -8,7 +8,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:flutter_blue_example/widgets.dart';
+import 'package:mija_time_sync/widgets.dart';
 
 void main() {
   runApp(FlutterBlueApp());
@@ -332,7 +332,7 @@ class DeviceScreen extends StatelessWidget {
               initialData: [],
               builder: (c, snapshot) {
                 return Column(
-                  children: _buildServiceTiles(snapshot.data),
+//                  children: _buildServiceTiles(snapshot.data),
                 );
               },
             ),
