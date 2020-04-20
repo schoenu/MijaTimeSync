@@ -1,6 +1,5 @@
-#name: flutter_blue_example
 name: mija_time_sync
-description: Demonstrates how to use the flutter_blue plugin.
+description: Sync time from your phone with Mija LYWSD02 gadget
 publish_to: 'none'
 
 version: 1.0.0+1
