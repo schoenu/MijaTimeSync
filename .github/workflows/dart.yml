@@ -16,6 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: setup-flutter
+      uses: takuyaohashi/setup-flutter@v1
+      #with:
+        # The Flutter version to download
+        #flutter-version: # optional, default is latest
+        # The Flutter channel to download
+        #channel: # optional, default is stable
     - name: Install dependencies
       run: flutter pub get
     - name: Run tests
