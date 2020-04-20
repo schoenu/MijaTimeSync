@@ -163,6 +163,7 @@ class DeviceScreen extends StatelessWidget {
   final BluetoothDevice device;
   //final GlobalKey<ScaffoldState> mScaffoldState = new GlobalKey<ScaffoldState>();
 
+
   List<int> _getRandomBytes() {
     final math = Random();
     return [
@@ -173,7 +174,7 @@ class DeviceScreen extends StatelessWidget {
     ];
   }
 
-  _discoverServicesAndSetTime() async {
+  _discoverServicesAndSetTime(BuildContext c) async {
     List<BluetoothService> services = await device.discoverServices();
     services.forEach((service) async {
       //debugPrint(service.uuid.toString());
@@ -200,7 +201,8 @@ class DeviceScreen extends StatelessWidget {
             debugPrint(toSend.toString());
 
             await char.write(toSend);
-            debugPrint('New time written');
+//            debugPrint('New time written');
+            _displaySnackbar('New time set', c);
           }
         }
       }
@@ -315,12 +317,12 @@ class DeviceScreen extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: Icon(Icons.add_alarm),
-                            onPressed: () => _discoverServicesAndSetTime(),
+                            onPressed: () => _discoverServicesAndSetTime(c),
                             ),
-                          IconButton(
-                            icon: Icon(Icons.search),
-                            onPressed: () => _displaySnackbar('Search services', c),
-                          ),
+//                          IconButton(
+//                            icon: Icon(Icons.search),
+//                            onPressed: () => _displaySnackbar('Search services', c),
+//                          ),
                         ],
                       ),
                     ),
